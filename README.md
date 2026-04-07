@@ -16,22 +16,22 @@ The data is provided in `.txt`formats. Each file represents a specific chip layo
 ### Column Descriptions
 | Column | Name | Description | Unit |
 | :--- | :--- | :--- | :--- |
-| 1 | `X` | X-coordinate of the hole center | Micrometers ($\mu m$) |
-| 2 | `Y` | Y-coordinate of the hole center | Micrometers ($\mu m$) |
+| 1 | `X` | X-coordinate of the hole center | Millimeters (mm) |
+| 2 | `Y` | Y-coordinate of the hole center | Millimeters (mm) |
 
 ### Physical Parameters
-- **Coordinate Scale:** Usually 0to 200,000 $\mu m$ (Full Wafer/Panel scale).
+- **Coordinate Scale:** Usually $0$ to $200,000\mu m$ (Full Wafer/Panel scale).
 - **Hole Diameter:** Typically $5 \sim 100 \mu m$.
 - **Precision Requirement:** Sub-micron repeatability.
 
 
 
 ## 3. Dataset Categories
-1. **Regular Cases (`/data/regular/rXX`):** Holes arranged in strict grids. Tests the solver's ability to find "S-curves" or "Z-curves".
-2. **Irregular Cases (`/data/irrgular/uXX`):** Irregularly placed holes. Tests the global optimization capability.
+1. **Regular Cases (`/data/regular/rXX `):** Holes arranged in strict grids. Tests the solver's ability to find "S-curves" or "Z-curves".
+2. **Irregular Cases (`/data/irrgular/uXX `):** Irregularly placed holes. Tests the global optimization capability.
 
-## 6. Comparison Protocol
+## 4. Comparison Protocol
 To ensure fair comparison in your publications, please report:
-1. **Total Euclidean Distance** (Standard TSP metric).
-2. **Total Turning Count** (Number of times $\theta_{abcd} \neq 0$).
-3. **Weighted Objective Value** using $\alpha=1, \beta=100$ (as used in the original paper).
+1. **Total Manhattan Distance** 
+2. **Total Turning Count**
+4. **Weighted Objective Value** using $\alpha=1, \beta=1$ (as used in the original paper).
