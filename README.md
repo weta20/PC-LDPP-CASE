@@ -27,8 +27,8 @@ The data is provided in `.txt`formats. Each file represents a specific chip layo
 
 
 ## 3. Dataset Categories
-1. **Regular Cases (`/data/regular/rXX `):** Holes arranged in strict grids. Tests the solver's ability to find "S-curves" or "Z-curves".
-2. **Irregular Cases (`/data/irrgular/uXX `):** Irregularly placed holes. Tests the global optimization capability.
+1. **Regular Cases (`/regular/rXX `):** Holes arranged in strict grids. Tests the solver's ability to find "S-curves" or "Z-curves".
+2. **Irregular Cases (`/irrgular/uXX `):** Irregularly placed holes. Tests the global optimization capability.
 
 ## 4. Comparison Protocol
 To ensure fair comparison in your publications, please report:
