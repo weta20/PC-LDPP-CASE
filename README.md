@@ -20,7 +20,7 @@ The data is provided in `.txt`formats. Each file represents a specific chip layo
 | 2 | `Y` | Y-coordinate of the hole center | Millimeters (mm) |
 
 ### Physical Parameters
-- **Coordinate Scale:** Usually $0$ to $200,000\mu m$ (Full Wafer/Panel scale).
+- **Coordinate Scale:** Usually $0$ to $200,000 \mu m$ (Full Wafer/Panel scale).
 - **Hole Diameter:** Typically $5 \sim 100 \mu m$.
 - **Precision Requirement:** Sub-micron repeatability.
 
