@@ -1,36 +1,64 @@
-# PC-LDPP: Process-Constrained Laser Drilling Path Planning
+# Benchmark Dataset for Process-Constrained Laser Drilling (PC-LDPP)
 
 ## 1. Overview
-**PC-LDPP** is an open-source framework designed to solve the path planning problem for large-scale chip laser drilling. In modern semiconductor manufacturing, a single chip may contain millions of micro-holes. Minimizing the processing time while maintaining high precision is a typical **Large-Scale Traveling Salesman Problem (TSP)** with complex industrial constraints.
+This repository contains a collection of large-scale benchmark datasets for the **Laser Drilling Path Planning (LDPP)** problem in semiconductor manufacturing. 
 
-Unlike conventional TSP, this project introduces a **Quad-Sequence Cost Model** that accounts for the laser head's acceleration, deceleration, and turning stability through a **Look-Up Table (LUT)** approach.
+The dataset is designed to challenge Traveling Salesman Problem (TSP) solvers by introducing **Process-Specific Constraints**, where the cost of movement depends not only on distance but also on the kinetic stability of the laser head across a **four-point sequence (Quad-Sequence)**.
 
-## 2. Key Features
-- **Large-Scale Solver:** Optimized for $10^5$ to $10^6$ hole positions.
-- **Quad-Sequence Cost Model:** Evaluates the transition between two consecutive drilling segments ($a \to b$ and $c \to d$) to minimize vibration and mechanical wear.
-- **LUT Optimization:** Replaces complex kinetic calculations with $O(1)$ table lookups for turning penalties.
-- **Pattern Recognition:** Leverages the geometric regularity of chip hole arrays to improve solving efficiency.
+## 2. Problem Context
+In high-density chip manufacturing, the goal is to traverse $10^5$ to $10^6$ coordinates. To maintain precision, the path must minimize frequent sharp turns and sudden accelerations. 
 
-## 3. Mathematical Model
+Researchers using this data are encouraged to apply a **Look-Up Table (LUT)** cost model:
+$$\text{Total Cost} = \alpha \cdot \text{Distance} + \beta \cdot \text{Turning Penalty}(\Phi)$$
+Where $\Phi$ is determined by the geometric relationship of four consecutive points ($p_a \to p_b \to p_c \to p_d$).
 
-The problem is formulated as a high-order TSP where the objective is to minimize the weighted sum of total distance and turning penalties.
+## 3. Data Specification
 
-### Objective Function
-$$\min Z = w_1 \sum_{i=1}^{n-1} d_{\pi_i, \pi_{i+1}} + w_2 \sum_{i=1}^{n-3} \Phi(\pi_i, \pi_{i+1}, \pi_{i+2}, \pi_{i+3})$$
+### File Format
+The data is provided in `.csv` or `.tsp` (TSPLIB compatible) formats. Each file represents a specific chip layout.
 
-Where:
-- $d_{ij}$: Euclidean distance between hole $i$ and $j$.
-- $\Phi(a,b,c,d)$: Turning cost for the sequence $a \to b \to c \to d$, where $ab$ and $cd$ are processing segments, and $bc$ is a jump segment.
-- $w_1, w_2$: Weighting factors for distance and process stability.
+### Column Descriptions
+| Column | Name | Description | Unit |
+| :--- | :--- | :--- | :--- |
+| 1 | `ID` | Unique index of the hole | Integer |
+| 2 | `X` | X-coordinate of the hole center | Micrometers ($\mu m$) |
+| 3 | `Y` | Y-coordinate of the hole center | Micrometers ($\mu m$) |
+| 4 | `Type` | Cluster/Layer category (if applicable) | Category ID |
 
-## 4. Getting Started
+### Physical Parameters
+- **Coordinate Scale:** Usually $0$ to $200,000 \mu m$ (Full Wafer/Panel scale).
+- **Hole Diameter:** Typically $10 \sim 50 \mu m$.
+- **Precision Requirement:** Sub-micron repeatability.
 
-### Prerequisites
-- Python 3.8+ or C++17 (for core solver)
-- Dependencies: `numpy`, `scipy`, `matplotlib` (for visualization)
+## 4. Quad-Sequence Cost Interpretation
+When evaluating a path sequence $( \dots, p_a, p_b, p_c, p_d, \dots )$, the "Turning Penalty" should be applied at the jump segment $p_b \to p_c$.
 
-### Installation
-```bash
-git clone [https://github.com/weta20/PC-LDPP-CASE.git](https://github.com/weta20/PC-LDPP-CASE.git)
-cd PC-LDPP
-pip install -r requirements.txt
+
+
+- **Segment $ab$:** Active drilling (Laser ON).
+- **Segment $bc$:** Positioning jump (Laser OFF).
+- **Segment $cd$:** Next active drilling (Laser ON).
+- **Penalty Logic:** If $\vec{v}_{ab}$ and $\vec{v}_{cd}$ are not collinear, a penalty value $\Phi$ from the provided `cost_table.csv` should be added to the objective function.
+
+## 5. Dataset Categories
+1. **Regular Arrays (`/data/regular/`):** Holes arranged in strict grids. Tests the solver's ability to find "S-curves" or "Z-curves".
+2. **Stochastic Distributions (`/data/random/`):** Irregularly placed holes. Tests the global optimization capability.
+3. **Hybrid Chips (`/data/hybrid/`):** Large-scale instances ($n > 500,000$) combining dense clusters and sparse regions.
+
+## 6. Comparison Protocol
+To ensure fair comparison in your publications, please report:
+1. **Total Euclidean Distance** (Standard TSP metric).
+2. **Total Turning Count** (Number of times $\theta_{abcd} \neq 0$).
+3. **Weighted Objective Value** using $\alpha=1, \beta=100$ (as used in the original paper).
+
+## 7. Citation
+If you use these benchmark instances in your research, please cite:
+
+```bibtex
+@dataset{YourName2026,
+  author = {Your Name},
+  title = {A Large-Scale Quad-Sequence Benchmark for Laser Drilling Path Planning},
+  year = {2026},
+  publisher = {GitHub},
+  journal = {[https://github.com/YourUsername/Chip-Laser-Drilling-Dataset](https://github.com/YourUsername/Chip-Laser-Drilling-Dataset)}
+}
