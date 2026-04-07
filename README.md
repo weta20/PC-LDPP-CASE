@@ -8,10 +8,6 @@ The dataset is designed to challenge Traveling Salesman Problem (TSP) solvers by
 ## 2. Problem Context
 In high-density chip manufacturing, the goal is to traverse $10^5$ to $10^6$ coordinates. To maintain precision, the path must minimize frequent sharp turns and sudden accelerations. 
 
-Researchers using this data are encouraged to apply a **Look-Up Table (LUT)** cost model:
-$$\text{Total Cost} = \alpha \cdot \text{Distance} + \beta \cdot \text{Turning Penalty}(\Phi)$$
-Where $\Phi$ is determined by the geometric relationship of four consecutive points ($p_a \to p_b \to p_c \to p_d$).
-
 ## 3. Data Specification
 
 ### File Format
@@ -20,10 +16,8 @@ The data is provided in `.csv` or `.tsp` (TSPLIB compatible) formats. Each file 
 ### Column Descriptions
 | Column | Name | Description | Unit |
 | :--- | :--- | :--- | :--- |
-| 1 | `ID` | Unique index of the hole | Integer |
-| 2 | `X` | X-coordinate of the hole center | Micrometers ($\mu m$) |
-| 3 | `Y` | Y-coordinate of the hole center | Micrometers ($\mu m$) |
-| 4 | `Type` | Cluster/Layer category (if applicable) | Category ID |
+| 1 | `X` | X-coordinate of the hole center | Micrometers ($\mu m$) |
+| 2 | `Y` | Y-coordinate of the hole center | Micrometers ($\mu m$) |
 
 ### Physical Parameters
 - **Coordinate Scale:** Usually $0$ to $200,000 \mu m$ (Full Wafer/Panel scale).
