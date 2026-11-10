@@ -1,0 +1,256 @@
+--- SRC\GetTime.c
++++ SRC\GetTime.c
+@@ -1,37 +1,2 @@
+-#define HAVE_GETRUSAGE
+-/* Undefine if you don't have the getrusage function */
+-/* #undef HAVE_GETRUSAGE */
+-
+-/*
+- * The GetTime function is used to measure execution time.
+- *
+- * The function is called before and after the code to be 
+- * measured. The difference between the second and the
+- * first call gives the number of seconds spent in executing
+- * the code.
+- *
+- * If the system call getrusage() is supported, the difference 
+- * gives the user time used; otherwise, the accounted real time.
+- */
+-
+-#ifdef HAVE_GETRUSAGE
+-#include <sys/time.h>
+-#include <sys/resource.h>
+-
+-double GetTime()
+-{
+-    struct rusage ru;
+-    getrusage(RUSAGE_SELF, &ru);
+-    return ru.ru_utime.tv_sec + ru.ru_utime.tv_usec / 1000000.0;
+-}
+-
+-#else
+-
+-#include <time.h>
+-
+-double GetTime()
+-{
+-    return (double) clock() / CLOCKS_PER_SEC;
+-}
+-
+-#endif
++#include <windows.h>
++double GetTime(void) { LARGE_INTEGER t,f; QueryPerformanceCounter(&t); QueryPerformanceFrequency(&f); return (double)t.QuadPart / (double)f.QuadPart; }
+--- LKH-2.0.9\SRC\GetTime.c
++++ LKH-2.0.9\SRC\GetTime.c
+@@ -1,37 +1,2 @@
+-#define HAVE_GETRUSAGE
+-/* Undefine if you don't have the getrusage function */
+-#undef HAVE_GETRUSAGE
+-
+-/*
+- * The GetTime function is used to measure execution time.
+- *
+- * The function is called before and after the code to be 
+- * measured. The difference between the second and the
+- * first call gives the number of seconds spent in executing
+- * the code.
+- *
+- * If the system call getrusage() is supported, the difference 
+- * gives the user time used; otherwise, the accounted real time.
+- */
+-
+-#ifdef HAVE_GETRUSAGE
+-#include <sys/time.h>
+-#include <sys/resource.h>
+-
+-double GetTime()
+-{
+-    struct rusage ru;
+-    getrusage(RUSAGE_SELF, &ru);
+-    return ru.ru_utime.tv_sec + ru.ru_utime.tv_usec / 1000000.0;
+-}
+-
+-#else
+-
+-#include <time.h>
+-
+-double GetTime()
+-{
+-    return (double) clock() / CLOCKS_PER_SEC;
+-}
+-
+-#endif
++#include <windows.h>
++double GetTime(void) { LARGE_INTEGER t,f; QueryPerformanceCounter(&t); QueryPerformanceFrequency(&f); return (double)t.QuadPart / (double)f.QuadPart; }
+--- SRC\GLKHmain.c
++++ SRC\GLKHmain.c
+@@ -1,7 +1,7 @@
+ #include "LKH.h"
+ #include <unistd.h>
+-#include <sys/time.h>
+-#include <sys/resource.h>
++
++
+ 
+ GainType SolveGTSP(int *GTour);
+ GainType PostOptimize(int *GTour, GainType Cost);
+--- SRC\GLKH_EXPmain.c
++++ SRC\GLKH_EXPmain.c
+@@ -1,7 +1,7 @@
+ #include "LKH.h"
+ #include <unistd.h>
+-#include <sys/time.h>
+-#include <sys/resource.h>
++
++
+ 
+ GainType SolveGTSP(int *GTour);
+ GainType PostOptimize(int *GTour, GainType Cost);
+--- SRC\SolveGTSP.c
++++ SRC\SolveGTSP.c
+@@ -1,7 +1,7 @@
+ #include "LKH.h"
+ #include <unistd.h>
+-#include <sys/time.h>
+-#include <sys/resource.h>
++
++
+ 
+ GainType SolveTSP(int Dimension, char *ParFileName,
+                   char *TourFileName, int *Tour, GainType Optimum,
+--- SRC\GLKHmain.c
++++ SRC\GLKHmain.c
+@@ -5,6 +5,7 @@
+ 
+ GainType SolveGTSP(int *GTour);
+ GainType PostOptimize(int *GTour, GainType Cost);
++double ExperimentStart;
+ static double GetTimeUsage(int who);
+ 
+ /*
+@@ -16,6 +17,7 @@
+     int *GTour;
+     GainType Cost;
+ 
++    ExperimentStart = GetTime();
+     /* Read the specification of the problem */
+     if (argc >= 2)
+         ParameterFileName = argv[1];
+@@ -39,13 +41,8 @@
+     if (Optimum != MINUS_INFINITY && Optimum != 0)
+         printff(", Error = %0.2f%%", 100.0 * (Cost - Optimum) / Optimum);
+     printff(", Time = %0.1f sec.\n\n",
+-            GetTimeUsage(RUSAGE_SELF) + GetTimeUsage(RUSAGE_CHILDREN));
++            GetTimeUsage(0));
+     return 0;
+ }
+ 
+-static double GetTimeUsage(int who)
+-{
+-    struct rusage ru;
+-    getrusage(who, &ru);
+-    return ru.ru_utime.tv_sec + ru.ru_utime.tv_usec / 1000000.0;
+-}
++static double GetTimeUsage(int who) { return GetTime() - ExperimentStart; }
+--- SRC\GLKHmain.c
++++ SRC\GLKHmain.c
+@@ -23,6 +23,36 @@
+         ParameterFileName = argv[1];
+     ReadParameters();
+     ReadProblem();
++    /* Bound native POPMUSIC initialization work for larger instances.
++       This changes a documented solver parameter, not its search operators. */
++    { int cap = (int) (50.0 * 630.0 * 630.0 / ((double) GTSPSets * GTSPSets));
++      if (cap < 3) cap = 3;
++      if (POPMUSIC_Solutions > cap) POPMUSIC_Solutions = cap;
++      /* The verified GLNS record is written by our runner before GLKH starts.
++         Consult timings only; never objective values or historical targets. */
++      { char fname[512], line[1024]; FILE *prior; double prep = -1.0, first = -1.0;
++        sprintf(fname, "results/%s.GLNS.json", Name);
++        prior = fopen(fname, "r");
++        if (prior) {
++          while (fgets(line, sizeof(line), prior)) {
++            if (strstr(line, "\"prepare_s\"")) sscanf(strchr(line, ':') + 1, "%lf", &prep);
++            if (strstr(line, "\"solver_wall_s\"")) sscanf(strchr(line, ':') + 1, "%lf", &first);
++          }
++          fclose(prior);
++        }
++        if (prep >= 0.0 && first >= 0.0) {
++          double remaining = fmax(5.0, 300.0 - prep - first - 10.0);
++          if (TimeLimit > remaining) TimeLimit = remaining;
++          if (TimeLimit < 119.999) {
++            int timed_cap = (int) (POPMUSIC_Solutions * fmax(0.0, TimeLimit - 20.0) / 100.0);
++            if (timed_cap < 1) timed_cap = 1;
++            if (POPMUSIC_Solutions > timed_cap) POPMUSIC_Solutions = timed_cap;
++          }
++        }
++      }
++      printff("Budget policy: POPMUSIC_SOLUTIONS = %d\n", POPMUSIC_Solutions);
++      printff("Case budget policy: TIME_LIMIT = %.6f\n", TimeLimit);
++    }
+ 
+     assert(GTour = (int *) malloc((GTSPSets + 1) * sizeof(int)));
+     Cost = SolveGTSP(GTour);
+--- SRC\SolveTSP.c
++++ SRC\SolveTSP.c
+@@ -25,8 +25,8 @@
+     char Command[256], Key[256], Buffer[256], *Line, *Keyword;
+     char Delimiters[] = " :=\n\t\r\f\v\xef\xbb\xbf";
+ 
+-    sprintf(Command, "./LKH %s", ParFileName);
+-    assert(p = popen(Command, "r"));
++    sprintf(Command, "bin\\LKH.exe %s", ParFileName);
++    assert(p = _popen(Command, "r"));
+     Cost = PLUS_INFINITY;
+     while (fgets(Buffer, sizeof(Buffer), p)) {
+         if (TraceLevel > 1)
+@@ -79,7 +79,7 @@
+             }
+         }
+     }
+-    pclose(p);
++    _pclose(p);
+     TourFile = fopen(TourFileName, "r");
+     if (!TourFile)
+         return PLUS_INFINITY;
+--- SRC\PostOptimize.c
++++ SRC\PostOptimize.c
+@@ -1,4 +1,5 @@
+ #include "LKH.h"
++extern double ExperimentStart;
+ #include <unistd.h>
+ 
+ GainType SolveTSP(int Dimension, char *ParFileName,
+@@ -39,6 +40,7 @@
+         printff("Post-optimization [Cost = " GainFormat "]\n", Cost);
+ 
+     while (1) {
++        if (GetTime() - ExperimentStart >= TimeLimit - 1.0) break;
+         /* Perform K-opt optimization */
+         if (Clusters >= 4)
+             Cost = KOptimize(GTour);
+@@ -133,6 +135,7 @@
+     fprintf(ParFile, "OPTIMUM = " GainFormat "\n", BestCost);
+     fprintf(ParFile, "PRECISION = %d\n", Precision);
+     fprintf(ParFile, "RUNS = 1\n");
++    fprintf(ParFile, "TIME_LIMIT = %.3f\n", fmax(0.0, TimeLimit - (GetTime() - ExperimentStart) - 1.0));
+     fprintf(ParFile, "SEED = %d\n", Seed);
+     if (!Subgradient)
+         fprintf(ParFile, "SUBGRADIENT = NO\n");
+--- SRC\SolveGTSP.c
++++ SRC\SolveGTSP.c
+@@ -1,4 +1,5 @@
+ #include "LKH.h"
++extern double ExperimentStart;
+ #include <unistd.h>
+ 
+ 
+@@ -191,7 +192,7 @@
+     if (!SubsequentPatching)
+         fprintf(ParFile, "SUBSEQUENT_PATCHING = NO\n");
+     if (TimeLimit != DBL_MAX)
+-        fprintf(ParFile, "TIME_LIMIT = %0.1f\n", TimeLimit);
++        fprintf(ParFile, "TIME_LIMIT = %0.1f\n", fmax(0.0, TimeLimit - (GetTime() - ExperimentStart) - 1.0));
+     sprintf(TourFileName, "TMP/%s.tour", Prefix);
+     fprintf(ParFile, "TOUR_FILE = %s\n", TourFileName);
+     fprintf(ParFile, "TRACE_LEVEL = %d\n",

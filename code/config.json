@@ -1,0 +1,46 @@
+{
+  "seed": 20261016,
+  "default_geometry_policy": "frozen",
+  "CBIS": {
+    "max_nbn": 75,
+    "shake": 2,
+    "local_trials": 160,
+    "local_patience": 50,
+    "neighbors": 24,
+    "matching_neighbors": 24,
+    "node_limit": 2000,
+    "mip_gap": 0.02,
+    "singleton_axis_passes": 2,
+    "shortlist": 3,
+    "max_lines": 4000,
+    "shake_operators": [
+      "change",
+      "swap",
+      "NI"
+    ],
+    "vnd_groups": [
+      "state",
+      "swap",
+      "reverse",
+      "relocate",
+      "block"
+    ],
+    "ni_mode": "full_insertion_delta",
+    "candidate_probability": 0.75,
+    "improvement_abs_tol": 0.01,
+    "repair_probability": 0.05,
+    "joint_shortlist": 2,
+    "local_repair": true,
+    "global_dp": true
+  },
+  "pure": {
+    "max_blocks": 128,
+    "target_holes": 128,
+    "max_states": 12,
+    "glns_trials": 1,
+    "glkh_max_trials": 500,
+    "popmusic_solutions": 3,
+    "popmusic_sample_size": 30,
+    "max_candidates": 15
+  }
+}

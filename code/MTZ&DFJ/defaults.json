@@ -1,0 +1,26 @@
+{
+  "distance_weight": 1,
+  "turn_weight": 1,
+  "closed": true,
+  "threads": 4,
+  "mip_focus": 2,
+  "total_time_limit_s": 3600,
+  "process_tree_memory_limit_gb": 16,
+  "solver_soft_memory_limit_gb": 12,
+  "solver_hard_memory_limit_gb": 14,
+  "mip_gap": 0,
+  "mip_gap_abs": 1e-08,
+  "feasibility_tol": 1e-08,
+  "int_feas_tol": 1e-08,
+  "method": 1,
+  "nodefile_start_gb": 0.5,
+  "resource_precheck": true,
+  "resource_precheck_basis": "mandatory_numpy_buffer_floor_and_int32_index_capacity",
+  "memory_estimate": {
+    "bytes_per_variable": 256,
+    "bytes_per_row": 256,
+    "bytes_per_nonzero": 32
+  },
+  "initialization_policy": "cold_start_no_external_solution",
+  "allow_mip_start": false
+}
