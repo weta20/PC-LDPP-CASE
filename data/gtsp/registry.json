@@ -1,0 +1,354 @@
+{
+  "cases": [
+    {
+      "name": "4gr17",
+      "dimension": 17,
+      "clusters": 4,
+      "file": "4gr17.npz",
+      "sha256": "dde5802d4debb7db9384b2473595906fc6c46a95faf6b29c7528d849b2031174"
+    },
+    {
+      "name": "5gr21",
+      "dimension": 21,
+      "clusters": 5,
+      "file": "5gr21.npz",
+      "sha256": "29349af4204c966cec6e4783e1de5255df0a0b2eb27113034da0a11d1838ef67"
+    },
+    {
+      "name": "5gr24",
+      "dimension": 24,
+      "clusters": 5,
+      "file": "5gr24.npz",
+      "sha256": "7d10da702911b757b0a21c1cd8888d62f89282473dc479297ab725493a3625d1"
+    },
+    {
+      "name": "6bays29",
+      "dimension": 29,
+      "clusters": 6,
+      "file": "6bays29.npz",
+      "sha256": "2b319bab2abe3620fb252ddced9887d46f179ba7ab5e81ceba35b9fabeaf3ed8"
+    },
+    {
+      "name": "6fri26",
+      "dimension": 26,
+      "clusters": 6,
+      "file": "6fri26.npz",
+      "sha256": "333d36860472956033b5b1f98df97ffeb4ee050d477c4790342939d50d8af9ef"
+    },
+    {
+      "name": "9dantzig42",
+      "dimension": 42,
+      "clusters": 9,
+      "file": "9dantzig42.npz",
+      "sha256": "5a1ef98509f9758036fc57e4f730fd68d37288148a73ea2588a1e2aed30b8495"
+    },
+    {
+      "name": "10gr48",
+      "dimension": 48,
+      "clusters": 10,
+      "file": "10gr48.npz",
+      "sha256": "b1dadbe25cf3a7452c85cd2668105e509a32b50203c978fb6a568c74f9521f87"
+    },
+    {
+      "name": "10hk48",
+      "dimension": 48,
+      "clusters": 10,
+      "file": "10hk48.npz",
+      "sha256": "28c7c63231fcf832e442df3d26e999f6b48bb5e4763d26e5df9425f5dfdfd11e"
+    },
+    {
+      "name": "11berlin52",
+      "dimension": 52,
+      "clusters": 11,
+      "file": "11berlin52.npz",
+      "sha256": "c80aa05e4a3e5e863c3bf84f99b4745ed35189068c2f754ef4375d49c6b3056f"
+    },
+    {
+      "name": "11eil51",
+      "dimension": 51,
+      "clusters": 11,
+      "file": "11eil51.npz",
+      "sha256": "0c6f5ada3b125b7e930da0a25194384a6d61661e3473545459e0e17e2b5463e1"
+    },
+    {
+      "name": "14st70",
+      "dimension": 70,
+      "clusters": 14,
+      "file": "14st70.npz",
+      "sha256": "3a6b124283e933391334e18b6fef5f8caebcac3422f103e78cd9dd19b9b895b4"
+    },
+    {
+      "name": "16eil76",
+      "dimension": 76,
+      "clusters": 16,
+      "file": "16eil76.npz",
+      "sha256": "e6c31b7467772b6562d7b22722f1a896e2791d2e644dea9809cf1b323d00e189"
+    },
+    {
+      "name": "16pr76",
+      "dimension": 76,
+      "clusters": 16,
+      "file": "16pr76.npz",
+      "sha256": "5101b6ade0eafeac7a11c76a190793e66eb3712ed68d4c5a4505fc6945ec62e3"
+    },
+    {
+      "name": "20kroA100",
+      "dimension": 100,
+      "clusters": 20,
+      "file": "20kroA100.npz",
+      "sha256": "5d98966c3c4643da797e1d525884777a17b98f756f3a0de9597c10bcfcbf6a85"
+    },
+    {
+      "name": "20kroB100",
+      "dimension": 100,
+      "clusters": 20,
+      "file": "20kroB100.npz",
+      "sha256": "9c01ee631d89c546a2a90eb3523bdd3eb3211b4e4a8a9b507f548d953d34a092"
+    },
+    {
+      "name": "20kroC100",
+      "dimension": 100,
+      "clusters": 20,
+      "file": "20kroC100.npz",
+      "sha256": "1affd82074c69b360ffd6a2edc0e65b69a696fea7464b0550fa0dd92eb8f5719"
+    },
+    {
+      "name": "20kroD100",
+      "dimension": 100,
+      "clusters": 20,
+      "file": "20kroD100.npz",
+      "sha256": "0e48021faf5f1f608999fa545a672db63f474d1b5c760ba2930464d5548d2746"
+    },
+    {
+      "name": "20kroE100",
+      "dimension": 100,
+      "clusters": 20,
+      "file": "20kroE100.npz",
+      "sha256": "e0e563e7ff56623328a9d19cee0365d0ba10570a93fb3c0a50138743e597cd2a"
+    },
+    {
+      "name": "20rat99",
+      "dimension": 99,
+      "clusters": 20,
+      "file": "20rat99.npz",
+      "sha256": "f7d911939f24da8efe2fcb8ec2d898f5a52bc95213fad0ff751846e88ae33f08"
+    },
+    {
+      "name": "20rd100",
+      "dimension": 100,
+      "clusters": 20,
+      "file": "20rd100.npz",
+      "sha256": "52a4d317f8d789851efa75f05dbff939c195697d0f69cba0306e81f4a7d8e868"
+    },
+    {
+      "name": "21eil101",
+      "dimension": 101,
+      "clusters": 21,
+      "file": "21eil101.npz",
+      "sha256": "22c9ac8801b3c7954d3aea8c449beb02dc44454448a2a33ddb452bb2e12d2916"
+    },
+    {
+      "name": "21lin105",
+      "dimension": 105,
+      "clusters": 21,
+      "file": "21lin105.npz",
+      "sha256": "184775003e60adc7fbef7193568161cbc04e24d43bf1983486d6ea671711c98c"
+    },
+    {
+      "name": "22pr107",
+      "dimension": 107,
+      "clusters": 22,
+      "file": "22pr107.npz",
+      "sha256": "1ae8c9dd7db3f9d6f8848d7eafaeb7e0cf70944c8ab146b5ef2fe11f96ae6212"
+    },
+    {
+      "name": "24gr120",
+      "dimension": 120,
+      "clusters": 24,
+      "file": "24gr120.npz",
+      "sha256": "2a95b7ba72a7143dd8aecd6ac14e31e601a035ae683316a48c5b4c674273d2bb"
+    },
+    {
+      "name": "25pr124",
+      "dimension": 124,
+      "clusters": 25,
+      "file": "25pr124.npz",
+      "sha256": "f40b020ce32e9b978669798ecb90d3384aa081459f0acd5a93f870fd09a8ea6a"
+    },
+    {
+      "name": "26bier127",
+      "dimension": 127,
+      "clusters": 26,
+      "file": "26bier127.npz",
+      "sha256": "3bac2149020cc2f1f6bc10cd8f8ef3be98cc6718f9ed75c4941d05b622330dbf"
+    },
+    {
+      "name": "26ch130",
+      "dimension": 130,
+      "clusters": 26,
+      "file": "26ch130.npz",
+      "sha256": "756a61aea0a3d934ef03f9dd66fa9867ed9d6e63a74d49c7df1670f9724099c4"
+    },
+    {
+      "name": "28pr136",
+      "dimension": 136,
+      "clusters": 28,
+      "file": "28pr136.npz",
+      "sha256": "80ce27387d78f7ec1adfb8d58d0324d457e2371c06ebb4e6fac972b4ec7a61a8"
+    },
+    {
+      "name": "29pr144",
+      "dimension": 144,
+      "clusters": 29,
+      "file": "29pr144.npz",
+      "sha256": "334af54c7790b0b67c4c35097f5f6420c9c08b91c74f9f09ab78de7b98c8824f"
+    },
+    {
+      "name": "30ch150",
+      "dimension": 150,
+      "clusters": 30,
+      "file": "30ch150.npz",
+      "sha256": "31b8725ff7218704ebe38386b9e5e69a6cac248e62cf2ac96d0b2a7dc3bd85d0"
+    },
+    {
+      "name": "30kroA150",
+      "dimension": 150,
+      "clusters": 30,
+      "file": "30kroA150.npz",
+      "sha256": "e2f2420502ae1c1698a1b6898cc003501e9de52ebf2c8d9a46734ee978d7912b"
+    },
+    {
+      "name": "30kroB150",
+      "dimension": 150,
+      "clusters": 30,
+      "file": "30kroB150.npz",
+      "sha256": "e1c7f8d539275daceb7ee18e41bc75c417bbd2029650c45f13ed7231b6424d93"
+    },
+    {
+      "name": "31pr152",
+      "dimension": 152,
+      "clusters": 31,
+      "file": "31pr152.npz",
+      "sha256": "46ddf1af459e524e1ff8ab7fef0416a5c14c443ad299c43b3d67fceb440e5014"
+    },
+    {
+      "name": "32u159",
+      "dimension": 159,
+      "clusters": 32,
+      "file": "32u159.npz",
+      "sha256": "6734d2559d92e53c8bade84c550b6ccddc1bf7c65dc38e6db82608f6872f86e7"
+    },
+    {
+      "name": "39rat195",
+      "dimension": 195,
+      "clusters": 39,
+      "file": "39rat195.npz",
+      "sha256": "e83a9b1f5434a0cc2ea66a67378485ce01c8a2121435e34b1e6e7c4cf112df5d"
+    },
+    {
+      "name": "40d198",
+      "dimension": 198,
+      "clusters": 40,
+      "file": "40d198.npz",
+      "sha256": "5a027f8c3a791b477fd260427940012561aba01ff71482d632829b125cfd1be2"
+    },
+    {
+      "name": "40kroA200",
+      "dimension": 200,
+      "clusters": 40,
+      "file": "40kroA200.npz",
+      "sha256": "44b9ede9137662583be40b3ceb1d0c9897d45ddca197aa4d81ff8fb1dfb859e9"
+    },
+    {
+      "name": "40kroB200",
+      "dimension": 200,
+      "clusters": 40,
+      "file": "40kroB200.npz",
+      "sha256": "8925bec3f2da2948e5b826db90b8737ae1e7bbe4a8b344253bd87ca1e215395e"
+    },
+    {
+      "name": "45ts225",
+      "dimension": 225,
+      "clusters": 45,
+      "file": "45ts225.npz",
+      "sha256": "46c01b91d781f95bdf5419661d3ba6bd7a87e943c871777ea312992d6e7a431d"
+    },
+    {
+      "name": "45tsp225",
+      "dimension": 225,
+      "clusters": 45,
+      "file": "45tsp225.npz",
+      "sha256": "9e59060618581c8ccc5e4d8a0cdbee0d4652ed861986bef019b282a43e14ae03"
+    },
+    {
+      "name": "46pr226",
+      "dimension": 226,
+      "clusters": 46,
+      "file": "46pr226.npz",
+      "sha256": "58aa3a0e5d3311ebaf912eff1104d54f9d0eeb2fe0378e9fc732664d05a1c526"
+    },
+    {
+      "name": "53gil262",
+      "dimension": 262,
+      "clusters": 53,
+      "file": "53gil262.npz",
+      "sha256": "04c694919a61b1697b8b53948891ea5d99bd24825e43d25fb781ff4f7b71ed67"
+    },
+    {
+      "name": "53pr264",
+      "dimension": 264,
+      "clusters": 53,
+      "file": "53pr264.npz",
+      "sha256": "90f20d2d7b74305cc91c50902530fc575eb1eab2f8bf2832d5b1d264ef944db1"
+    },
+    {
+      "name": "56a280",
+      "dimension": 280,
+      "clusters": 56,
+      "file": "56a280.npz",
+      "sha256": "d26f4ea6194e17efbbc0e0bc381b93e78b6712df8c69203ffcd293c19aba8b1f"
+    },
+    {
+      "name": "60pr299",
+      "dimension": 299,
+      "clusters": 60,
+      "file": "60pr299.npz",
+      "sha256": "f3ee40a64838707e1dd6d76cd52490db88304f226ab633f1c8307258ab1ff830"
+    },
+    {
+      "name": "64lin318",
+      "dimension": 318,
+      "clusters": 64,
+      "file": "64lin318.npz",
+      "sha256": "05d99debbd43ffe09fbfee84143b86e327aad3396a2ba5f7c98bab226b3cd8b3"
+    },
+    {
+      "name": "80rd400",
+      "dimension": 400,
+      "clusters": 80,
+      "file": "80rd400.npz",
+      "sha256": "cbb4e57adafca1eddb71d9b45223b14c0a8ff0a7c65a2c6679a23a3730a1bc46"
+    },
+    {
+      "name": "84fl417",
+      "dimension": 417,
+      "clusters": 84,
+      "file": "84fl417.npz",
+      "sha256": "3d20e2233124d31d136bf26c4d034bc28961c2c085e6198ab89dcc34f90d603c"
+    },
+    {
+      "name": "88pr439",
+      "dimension": 439,
+      "clusters": 88,
+      "file": "88pr439.npz",
+      "sha256": "1469e99a9279dcda526a2172c4ca0e89895dbd14830b730c7715d9dbd7ae849f"
+    },
+    {
+      "name": "89pcb442",
+      "dimension": 442,
+      "clusters": 89,
+      "file": "89pcb442.npz",
+      "sha256": "ba1ac60941147da6fb4aaed10fe6e9a95c3047f74f8529db8e8f1da5227069d3"
+    }
+  ]
+}
