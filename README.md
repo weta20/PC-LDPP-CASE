@@ -100,5 +100,4 @@ preserved in [code/common/bin/licenses](code/common/bin/licenses/).
 The GLNS implementation originates from
 [glns-cpp](https://github.com/stephenlsmith/glns-cpp); GLKH and LKH are described
 on the [author's software page](https://keldhelsgaun.github.io/).
-Gurobi requires a user-supplied license.
 
