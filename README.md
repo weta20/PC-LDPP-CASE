@@ -11,11 +11,6 @@ evaluate the trade-off between travel distance and changes in travel direction.
 CBIS organizes holes into scan lines, constructs and joins cycles, and improves
 the resulting route through a fused variable neighborhood search.
 
-The repository is prepared for anonymous review. Author information, the
-manuscript citation, and the license for the original project code and data
-remain to be specified.
-
-
 ## Repository structure
 
 ```text
@@ -100,10 +95,6 @@ values. Resource prechecks, interrupted attempts, feasible solutions, and
 proven optima must be distinguished.
 
 ## Licensing and citation
-
-The license for the original project code and data is **pending**. No MIT,
-Apache, or other blanket license is granted to those materials by this README.
-
 Third-party software retains its own terms. The bundled GLNS license notice is
 preserved in [code/common/bin/licenses](code/common/bin/licenses/).
 The GLNS implementation originates from
@@ -111,5 +102,3 @@ The GLNS implementation originates from
 on the [author's software page](https://keldhelsgaun.github.io/).
 Gurobi requires a user-supplied license.
 
-The project citation and author information will be added after anonymous
-review. When using the third-party solvers, also cite their upstream publications.
